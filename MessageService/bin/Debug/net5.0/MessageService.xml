@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MessageService</name>
+    </assembly>
+    <members>
+        <member name="T:MessageService.Controllers.MessageServiceController">
+            <summary>
+            Контроллер, отвечающий за реализации методов GET и POST.
+            </summary>
+        </member>
+        <member name="M:MessageService.Controllers.MessageServiceController.CreateListsAndJsonFiles">
+            <summary>
+            Заполняет список пользователей и сортирует его,
+            заполняет список сообщений, затем сериализует оба списка.
+            </summary>
+        </member>
+        <member name="M:MessageService.Controllers.MessageServiceController.GetSomeUsers(System.Int32,System.Int32)">
+            <summary>
+            Делает выборку по пользователям.
+            </summary>
+            <param name="limit">Количество шагов.</param>
+            <param name="offset">Номер, с которого добавляются пользователи (индексация с 0).</param>
+            <returns>Список выбранных пользователей.</returns>
+        </member>
+        <member name="M:MessageService.Controllers.MessageServiceController.GetAllUsers">
+            <summary>
+            Возвращает отсортированный список пользователей.
+            </summary>
+            <returns>Отсортированный список пользователей.</returns>
+        </member>
+        <member name="M:MessageService.Controllers.MessageServiceController.GetUserByEmail(System.String)">
+            <summary>
+            Поиск пользователя по электронной почте.
+            </summary>
+            <param name="email">Электронная почта.</param>
+            <returns>Возвращает пользователя.</returns>
+        </member>
+        <member name="M:MessageService.Controllers.MessageServiceController.GetMessagesBySenderIdAndReceiverId(System.String,System.String)">
+            <summary>
+            Получает все сообщения по идентификационным номерам
+            отправителя и получателя.
+            </summary>
+            <param name="senderId">Email отправителя.</param>
+            <param name="receiverId">Email получателя.</param>
+            <returns>Все сообщения, отправленные одним пользователем другому.</returns>
+        </member>
+        <member name="M:MessageService.Controllers.MessageServiceController.GetMessagesBySenderId(System.String)">
+            <summary>
+            Возвращает все соообщения, отправленные каким-либо
+            пользователем.
+            </summary>
+            <param name="senderId">Email пользователя.</param>
+            <returns>Список сообщений,отправленных пользователем.</returns>
+        </member>
+        <member name="M:MessageService.Controllers.MessageServiceController.GetMessagesByReceiverId(System.String)">
+            <summary>
+            Возвращает список сообщений, полученных каким-либо
+            пользователем.
+            </summary>
+            <param name="receiverId">Email получателя.</param>
+            <returns>Список сообщений, полученных каким-либо пользователем.</returns>
+        </member>
+        <member name="M:MessageService.Controllers.MessageServiceController.ClearAllLists">
+            <summary>
+            Очищает все списки.
+            </summary>
+        </member>
+        <member name="M:MessageService.Controllers.MessageServiceController.FillListOfUsers">
+            <summary>
+            Заполняет списки пользователей.
+            </summary>
+        </member>
+        <member name="M:MessageService.Controllers.MessageServiceController.FillListOfMessages">
+            <summary>
+            Заполняет список сообщений.
+            </summary>
+        </member>
+        <member name="M:MessageService.Controllers.MessageServiceController.FillListOfRequiredMessage(System.IO.FileStream,System.String,System.String)">
+            <summary>
+            Заполняет список с сообщениями от определенного получателя
+            к определенному адресату.
+            </summary>
+            <param name="messageFile">Файловый поток.</param>
+            <param name="senderId">Email отправителя.</param>
+            <param name="receiverId">Email получателя.</param>
+            <returns>Список нужных сообщений.</returns>
+        </member>
+        <member name="M:MessageService.Controllers.MessageServiceController.FillListOfRequiredMessage(System.IO.FileStream,System.String)">
+            <summary>
+            Заполняет список сообщениями отправителя по его Email.
+            </summary>
+            <param name="messageFile">Файловый поток.</param>
+            <param name="senderId">Email отправителя.</param>
+            <returns>Список отправленных сообщений.</returns>
+        </member>
+        <member name="M:MessageService.Controllers.MessageServiceController.FillListOfRequiredMessage(System.String,System.IO.FileStream)">
+            <summary>
+            Заполняет список сообщениями получателя по его Email.
+            </summary>
+            <param name="receiverId">Email получателя.</param>
+            <param name="messageFile">Файловый поток.</param>
+            <returns>Список сообщений получателя.</returns>
+        </member>
+        <member name="M:MessageService.Controllers.MessageServiceController.GetUsers">
+            <summary>
+            Возвращает список пользователей.
+            </summary>
+            <returns>Список пользователей.</returns>
+        </member>
+        <member name="T:MessageService.Models.Post">
+            <summary>
+            Класс, создающий сообщения.
+            </summary>
+        </member>
+        <member name="P:MessageService.Models.Post.Subject">
+            <summary>
+            Тема сообщения.
+            </summary>
+        </member>
+        <member name="P:MessageService.Models.Post.Message">
+            <summary>
+            Текст сообщения.
+            </summary>
+        </member>
+        <member name="P:MessageService.Models.Post.SenderId">
+            <summary>
+            Электронная почта отправителя.
+            </summary>
+        </member>
+        <member name="P:MessageService.Models.Post.ReceiverId">
+            <summary>
+            Электронная почта получателя.
+            </summary>
+        </member>
+        <member name="M:MessageService.Models.Post.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Создает объект класса Post.
+            </summary>
+            <param name="subject">Тема сообщения.</param>
+            <param name="message">Текст сообщения.</param>
+            <param name="senderId">Идентификационный номер отправителя.</param>
+            <param name="receiverId">Идентификационный номер получателя.</param>
+        </member>
+        <member name="M:MessageService.Models.Post.CreateText">
+            <summary>
+            Генирирует случайный текст для темы и текста
+            сообщения.
+            </summary>
+            <returns>Возвращает текст из заглавных английских букв.</returns>
+        </member>
+        <member name="T:MessageService.Models.User">
+            <summary>
+            Класс, создающий пользователя сервиса сообщений.
+            </summary>
+        </member>
+        <member name="P:MessageService.Models.User.UserName">
+            <summary>
+            Имя пользователя.
+            </summary>
+        </member>
+        <member name="P:MessageService.Models.User.Email">
+             <summary>
+             Электронная почта пользователя.
+             </summary>
+            
+        </member>
+        <member name="M:MessageService.Models.User.#ctor(System.String,System.String)">
+            <summary>
+            Создает объект класса User.
+            </summary>
+            <param name="userName">Имя пользователя.</param>
+            <param name="email">Электронная почта пользователя.</param>
+        </member>
+        <member name="M:MessageService.Models.User.CreateUserName">
+            <summary>
+            Метод, генерирующий имя пользователя.
+            </summary>
+            <returns>Имя пользователя.</returns>
+        </member>
+        <member name="M:MessageService.Models.User.CreateEmail">
+            <summary>
+            Генерирует электронную почту пользователя.
+            </summary>
+            <returns>Электронная почта пользователя.</returns>
+        </member>
+        <member name="T:MessageService.Program">
+            <summary>
+            Основной класс программы.
+            </summary>
+        </member>
+        <member name="M:MessageService.Program.Main(System.String[])">
+            <summary>
+            Точка входа в программу.
+            </summary>
+            <param name="args">Параметры, подаваемые на вход.</param>
+        </member>
+        <member name="M:MessageService.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Метод, позволяющий запустить приложение.
+            </summary>
+            <param name="args">Параметр для создания IHostBuilder.</param>
+            <returns>Объект для создания IHost.</returns>
+        </member>
+        <member name="T:MessageService.Startup">
+            <summary>
+            Класс производит конфигурацию приложения.
+            </summary>
+        </member>
+        <member name="M:MessageService.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Конструктор, создающий объект.
+            </summary>
+            <param name="configuration">Набор свойств конфигурации приложения</param>
+        </member>
+        <member name="P:MessageService.Startup.Configuration">
+            <summary>
+            Набор свойств конфигурации приложения
+            </summary>
+        </member>
+        <member name="M:MessageService.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Регистрация служб в IServiceCollection.
+            </summary>
+            <param name="services">Коллекция IServiceCollection, в которую добавляются службы.</param>
+        </member>
+        <member name="M:MessageService.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Создает конвейера обработки запросов приложения.
+            </summary>
+            <param name="app">Механизм для настройки конвейера запросов приложения.</param>
+            <param name="env">Сведения о среде веб-размещения, в которой выполняется приложение.</param>
+        </member>
+    </members>
+</doc>
